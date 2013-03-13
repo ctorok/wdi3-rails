@@ -18,20 +18,19 @@ describe 'Subscribers' do
   end
 
    describe 'POST /subscribers' do
-    it 'creates a new subscriber', :js => true do #this means that we will be using javascript
+    it 'creates a new subscriber', :js => true do
       visit root_path
       click_link('Register')
-      page.should have_button('Cancel')
       fill_in('Username', :with => 'Bob')
       fill_in('Email', :with => 'bob@gmail.com')
       fill_in('subscriber_password', :with => 'a')
       fill_in('subscriber_password_confirmation', :with => 'a')
-      click_button('Create Subscriber') #we are doing AJAX, and will be staying on the same page
-      page.should_not have_button('Create Subscriber') #this causes rails to wait and process the creation of the user, because it knows that this is a JS call
+      click_button('Create Subscriber')
+      page.should_not have_button('Create Subscriber')
       page.should have_text('You have successfully created an account')
       expect(Subscriber.first.username).to eq 'Bob'
     end
-  end
+end
 
   describe 'Javascript cancel_subscriber_form' do
     it 'it removes the create subscriber form', :js => true do

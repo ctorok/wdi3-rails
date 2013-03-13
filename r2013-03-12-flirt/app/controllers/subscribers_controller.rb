@@ -3,7 +3,6 @@ class SubscribersController < ApplicationController
     @subscriber = Subscriber.new
   end
   def create
-    binding.pry
-    @subscriber = Subscriber.create(params[:subscriber])
+    subscriber = Subscriber.create(params[:subscriber])
   end
 end
