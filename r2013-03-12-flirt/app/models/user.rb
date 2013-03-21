@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation
   belongs_to :userable, :polymorphic => true
   validates :username, :email, :presence => true
+
+  def sub
+    self.userable if self.userable.is_a?(Subscriber)
+  end
+
+  def admin
+    self.userable if self.userable.is_a?(Administrator)
+  end
 end

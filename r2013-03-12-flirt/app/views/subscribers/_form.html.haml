@@ -10,6 +10,6 @@
       = f.password_field :password
       = f.label :password_confirmation
       = f.password_field :password_confirmation
-      = button_to_function('Cancel', 'cancel_subscriber_form()', :class => 'button tiny radius alert')
+      = link_to('Cancel', '#', :'data-clear-form' => true, :class => 'button tiny radius alert')
       = f.submit nil, :class => 'button tiny radius success'
   .large-9.columns

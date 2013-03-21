@@ -15,29 +15,42 @@
 require 'spec_helper'
 
 describe User do
-  describe '.new' do
-    it 'creates an intance of User' do
-      user = User.new
-      expect(user).to be_an_instance_of(User)
-    end
-    it 'has username, email, password and password_confirmation' do
-      user = User.new(username: 'bob', email: 'bob@gmail.com', password: 'a', password_confirmation: 'a')
-      expect(user.username).to eq 'bob'
-      expect(user.email).to eq 'bob@gmail.com'
-      expect(user.password).to eq 'a'
-      expect(user.password_confirmation).to eq 'a'
-    end
-  end
-
   describe '.create' do
     it 'has an id' do
       user = User.create(username: 'bob', email: 'bob@gmail.com', password: 'a', password_confirmation: 'a')
       expect(user.id).to_not be nil
     end
-
-    it 'fails validation if username or email is blank while supplying password' do
-      user = User.create(:password => 'a', :password_confirmation => 'a')
+    it 'fails validation' do
+      user = User.create
       expect(user.id).to be nil
+    end
+  end
+
+  context 'requires a valid user, subscriber and administrator' do
+    let(:user) {User.create(username: 'bob', email: 'bob@gmail.com', password: 'a', password_confirmation: 'a')}
+    let(:subscriber) {FactoryGirl.create(:subscriber_no_subscription)}
+    let(:admin) {FactoryGirl.create(:administrator)}
+
+    describe '#sub' do
+      it 'returns a Subscriber object' do
+        subscriber.user = user
+        expect(user.sub).to eq subscriber
+      end
+      it 'return nil when the user is not a subscriber' do
+        admin.user = user
+        expect(user.sub).to be nil
+      end
+    end
+
+    describe '#admin' do
+      it 'returns a Administrator object' do
+        admin.user = user
+        expect(user.admin).to eq admin
+      end
+      it 'return nil when the user is not an admin' do
+        subscriber.user = user
+        expect(user.admin).to be nil
+      end
     end
   end
 end

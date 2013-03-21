@@ -1,0 +1,42 @@
+.full-width
+{
+  width: 100%;
+  border: none;
+}
+
+body {
+  background-color: #020;
+}
+
+.brown {
+  color: #020;
+  background-color: #929292;
+}
+
+img {
+  border-top: 5px white solid;
+  border-left: 5px white solid;
+  border-right: 5px white solid;
+  border-bottom: 35px white solid;
+  border-radius: 3px;
+  // float: left;
+  // margin: 5px;
+
+  width: 225px;
+  height: 265px;
+
+}
+
+.photo {
+
+  float: left;
+  margin: 20px;
+
+
+}
+
+
+
+ul li {
+  list-style: none;
+}

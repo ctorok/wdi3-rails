@@ -1,0 +1,13 @@
+#album{:'data-album-id' => params[:id]}
+
+.row
+  .large-2.columns
+    = link_to('New Photo', new_photo_path(:album_id => params[:id]), :remote => true, :class => 'button tiny radius brown')
+    = link_to('Delete checked phtos', photo_path, :remote => true, :class => 'button tiny radius alert')
+  .large-2.columns
+    #slider
+  .large-8.columns
+
+#form
+#photos
+  = render :partial => 'photos/photos'

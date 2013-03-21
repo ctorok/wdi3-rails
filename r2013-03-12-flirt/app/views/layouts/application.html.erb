@@ -11,12 +11,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render :partial => 'layouts/nav' %>
-  <%= render :partial => 'layouts/body' %>
-  <%= render :partial => 'layouts/footer' %>
+  <div id='nav'><%= render :partial => 'layouts/nav' %></div>
+  <div id='body'><%= render :partial => 'layouts/body' %></div>
+  <div id='footer'><%= render :partial => 'layouts/footer' %></div>
 
   <script>
   $(document).foundation();
   </script>
+  <%= javascript_include_tag params[:controller] %>
 </body>
 </html>

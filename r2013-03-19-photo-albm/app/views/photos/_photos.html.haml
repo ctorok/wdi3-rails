@@ -1,0 +1,5 @@
+%ul
+  - @photos.each do |photo|
+    %li.photo
+      = image_tag(photo.url.thumb.url)
+      = check_box_tag('photo_ids[]', photo.id)
